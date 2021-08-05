@@ -1,0 +1,50 @@
+/**
+  author: kevin
+ */
+
+package service
+
+import (
+	"github.com/hyperledger/fabric-sdk-go/pkg/client/channel"
+	"fmt"
+	"time"
+	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/fab"
+)
+
+type ServiceSetup struct {
+	ChaincodeID	string
+	Client	*channel.Client
+}
+
+func regitserEvent(client *channel.Client, chaincodeID, eventID string) (fab.Registration, <-chan *fab.CCEvent) {
+
+	reg, notifier, err := client.RegisterChaincodeEvent(chaincodeID, eventID)
+	if err != nil {
+		fmt.Println("注册链码事件失败: %s", err)
+	}
+	return reg, notifier
+}
+
+func eventResult(notifier <-chan *fab.CCEvent, eventID string) error {
+	select {
+	case ccEvent := <-notifier:
+		fmt.Printf("接收到链码事件: %v\n", ccEvent)
+	case <-time.After(time.Second * 20):
+		return fmt.Errorf("不能根据指定的事件ID接收到相应的链码事件(%s)", eventID)
+	}
+	return nil
+}
+
+type Mechanic struct{
+	Key		string`json:"Key"`
+	Value	string`json:"Value"`
+	Test	string`json:"test"`
+}
+
+type Measure struct{
+	Id		string 		`json:"Id"`
+	No		string 		`json:"No"`
+	Time	string		`json:"Time"`
+	Ddata	[3]float32 	`json:"D"`
+	Ldata	[3]float32 	`json:"L"`
+}
