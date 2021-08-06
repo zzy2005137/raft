@@ -9,14 +9,15 @@
 package controller
 
 import (
-	"net/http"
-
+	"github.com/gin-gonic/gin"
 	"github.com/raft/fabric_raft/service"
 )
 
 type Application struct {
 	Fabric *service.ServiceSetup
 }
+
+/*
 
 func (app *Application) IndexView(w http.ResponseWriter, r *http.Request) {
 	showView(w, r, "index.html", nil)
@@ -74,4 +75,14 @@ func (app *Application) QueryInfo(w http.ResponseWriter, r *http.Request) {
 	}
 	// 响应客户端
 	showView(w, r, "queryReq.html", data)
+}
+
+*/
+
+func Test(c *gin.Context) {
+
+	c.JSON(200, gin.H{
+		"message": "SUCCESS",
+	})
+
 }

@@ -3,7 +3,7 @@ module github.com/raft/fabric_raft
 go 1.16
 
 require (
-	github.com/AlexTan-b-z/fabric-sdk-go-demo v0.0.0-20200819140320-2cd0b06102f0 // indirect
+	github.com/gin-gonic/gin v1.7.3
 	github.com/go-sql-driver/mysql v1.3.0
 	github.com/hyperledger/fabric-protos-go v0.0.0-20210316153620-d0b39a899b24
 	github.com/hyperledger/fabric-sdk-go v1.0.0
