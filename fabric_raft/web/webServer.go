@@ -21,8 +21,8 @@ func WebStart(app *controller.Application) {
 		})
 	})
 
-	r.GET("/get", app.GetData)
-	r.POST("/post", app.CreateData)
+	r.GET("/fab", app.GetData)
+	r.POST("/fab", app.CreateData)
 
 	r.Run(":8080")
 
