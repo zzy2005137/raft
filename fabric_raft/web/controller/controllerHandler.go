@@ -93,7 +93,10 @@ func Test(c *gin.Context) {
 
 func (app *Application) GetData(c *gin.Context) {
 
-	result, err := app.Fabric.FindInfo("zs")
+	name := c.DefaultQuery("name", "unknown")
+	fmt.Println("查询..." + name)
+
+	result, err := app.Fabric.FindInfo(name)
 	if err != nil {
 		fmt.Println(err.Error())
 	} else {
@@ -101,7 +104,7 @@ func (app *Application) GetData(c *gin.Context) {
 		json.Unmarshal(result, &m)
 		fmt.Println("根据Key查询信息成功：")
 		fmt.Println(m)
-		c.JSON(http.StatusOK, result)
+		c.JSON(http.StatusOK, m)
 	}
 
 }
