@@ -15,15 +15,11 @@ func WebStart(app *controller.Application) {
 	r := gin.Default()
 	r.Static("/static", "static")
 
-	r.GET("/test", func(c *gin.Context) {
+	r.GET("/test", func(c *gin.Context) {	
 		c.JSON(http.StatusOK, gin.H{
 			"message": "SUCCESS",
 		})
 	})
-
-	r.Run(":8080")
-
-	r.GET("/get", app.GetData)
 
 	// fs := http.FileServer(http.Dir("web/static"))
 	// http.Handle("/static/", http.StripPrefix("/static/", fs))

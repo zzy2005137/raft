@@ -1,3 +1,7 @@
+/**
+  author: kevin
+ */
+
 package service
 
 import (
@@ -6,7 +10,6 @@ import (
 	"time"
 	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/fab"
 )
-
 
 type ServiceSetup struct {
 	ChaincodeID	string
@@ -32,3 +35,16 @@ func eventResult(notifier <-chan *fab.CCEvent, eventID string) error {
 	return nil
 }
 
+type Mechanic struct{
+	Key		string`json:"Key"`
+	Value	string`json:"Value"`
+	Test	string`json:"test"`
+}
+
+type Measure struct{
+	Id		string 		`json:"Id"`
+	No		string 		`json:"No"`
+	Time	string		`json:"Time"`
+	Ddata	[3]float32 	`json:"D"`
+	Ldata	[3]float32 	`json:"L"`
+}

@@ -9,10 +9,6 @@
 package controller
 
 import (
-	"encoding/json"
-	"fmt"
-	"net/http"
-
 	"github.com/gin-gonic/gin"
 	"github.com/raft/fabric_raft/service"
 )
@@ -88,20 +84,5 @@ func Test(c *gin.Context) {
 	c.JSON(200, gin.H{
 		"message": "SUCCESS",
 	})
-
-}
-
-func (app *Application) GetData(c *gin.Context) {
-
-	result, err := app.Fabric.FindInfo("zs")
-	if err != nil {
-		fmt.Println(err.Error())
-	} else {
-		var m service.Mechanic
-		json.Unmarshal(result, &m)
-		fmt.Println("根据Key查询信息成功：")
-		fmt.Println(m)
-		c.JSON(http.StatusOK, result)
-	}
 
 }
