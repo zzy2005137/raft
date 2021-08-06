@@ -14,8 +14,6 @@ import (
 	"fmt"
 
 	"github.com/raft/fabric_raft/sdkInit"
-	"github.com/raft/fabric_raft/web"
-	"github.com/raft/fabric_raft/web/controller"
 
 	// "github.com/raft/fabric_raft/model"
 	"github.com/raft/fabric_raft/service"
@@ -45,7 +43,6 @@ var (
 
 func main() {
 
-	
 	//==============================================//
 	//准备
 	//==============================================//
@@ -175,13 +172,12 @@ func main() {
 
 	fmt.Println("===========服务层功能测试完成================")
 
-	fmt.Println("===========web 服务启动===================")
+	// fmt.Println("===========web 服务启动===================")
 
-	
-	app := controller.Application{
-		Fabric: &serviceSetup,
-	}
-	web.WebStart(&app)
+	// app := controller.Application{
+	// 	Fabric: &serviceSetup,
+	// }
+	// web.WebStart(&app)
 
 	//===========================================//
 
