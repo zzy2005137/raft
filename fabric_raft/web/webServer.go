@@ -22,6 +22,9 @@ func WebStart(app *controller.Application) {
 	})
 
 	r.GET("/get", app.GetData)
+	r.POST("/post", app.CreateData)
+
+	r.Run(":8080")
 
 	// fs := http.FileServer(http.Dir("web/static"))
 	// http.Handle("/static/", http.StripPrefix("/static/", fs))

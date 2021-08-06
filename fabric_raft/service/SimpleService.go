@@ -46,7 +46,7 @@ func (t *ServiceSetup) Save(m Mechanic) (string, error) {
 	reg, notifier := regitserEvent(t.Client, t.ChaincodeID, eventID)
 	defer t.Client.UnregisterChaincodeEvent(reg)
 
-	// 数据处理，将m对象序列化成为字节数组
+	// 数据处理，将m序列化成为json对象
 	b, err := json.Marshal(m)
 	if err != nil {
 		return "", fmt.Errorf("指定的m对象序列化时发生错误")

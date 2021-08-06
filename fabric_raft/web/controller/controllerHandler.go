@@ -105,3 +105,27 @@ func (app *Application) GetData(c *gin.Context) {
 	}
 
 }
+
+func (app *Application) CreateData(c *gin.Context) {
+
+	var m service.Mechanic
+
+	if err := c.ShouldBind(&m); err != nil { // 不管是form,queryString,还是json，都自动判断接收
+		fmt.Println(err.Error())
+	} else {
+		fmt.Println(m)
+		fmt.Println("=======creating data========")
+
+		msg, err := app.Fabric.Save(m)
+		if err != nil {
+			fmt.Println(err.Error())
+		} else {
+			fmt.Println("信息发布成功, 交易编号为: " + msg)
+			c.JSON(http.StatusOK, gin.H{
+				"transaction ID ": msg,
+			})
+		}
+
+	}
+
+}

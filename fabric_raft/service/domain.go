@@ -36,15 +36,15 @@ func eventResult(notifier <-chan *fab.CCEvent, eventID string) error {
 }
 
 type Mechanic struct{
-	Key		string`json:"Key"`
-	Value	string`json:"Value"`
-	Test	string`json:"test"`
+	Key		string`json:"key" form:"key"`
+	Value	string`json:"value" form:"value"`
+	Test	string`json:"test" form:"test"`
 }
 
 type Measure struct{
-	Id		string 		`json:"Id"`
-	No		string 		`json:"No"`
-	Time	string		`json:"Time"`
-	Ddata	[3]float32 	`json:"D"`
-	Ldata	[3]float32 	`json:"L"`
+	Id		string 		`json:"id"`
+	No		string 		`json:"no"`
+	Time	string		`json:"time"`
+	Ddata	[3]float32 	`json:"Ddata"`
+	Ldata	[3]float32 	`json:"Ldata"`
 }
