@@ -31,7 +31,7 @@ func Test(c *gin.Context) {
 
 func (app *Application) GetData(c *gin.Context) {
 
-	key := c.DefaultQuery("key", "unknown")
+	key := c.DefaultQuery("key", "zs")
 	fmt.Println("查询..." + key)
 
 	result, err := app.Fabric.FindInfo(key)
