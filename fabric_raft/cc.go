@@ -17,8 +17,8 @@ import (
 
 	// "github.com/raft/fabric_raft/model"
 	"github.com/raft/fabric_raft/service"
-	"github.com/raft/fabric_raft/web"
-	"github.com/raft/fabric_raft/web/controller"
+	// "github.com/raft/fabric_raft/web"
+	// "github.com/raft/fabric_raft/web/controller"
 
 	// "github.com/raft/fabric_raft/goserial"
 	"database/sql"
@@ -123,6 +123,9 @@ func main() {
 	}
 
 	fmt.Println(channelClient)
+
+	client2, _ := sdkInit.GetClient(sdk1, initInfo1)  //test
+	fmt.Println(client2)
 
 	//==============================================//
 	//             服务层功能测试

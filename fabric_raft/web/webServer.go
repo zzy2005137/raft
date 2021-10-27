@@ -15,6 +15,12 @@ func WebStart(app *controller.Application) {
 	r := gin.Default()
 	r.Static("/static", "static")
 
+	r.GET("/", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{
+			"message": "web server start successfully!!!",
+		})
+	})
+
 	r.GET("/test", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
 			"message": "SUCCESS",

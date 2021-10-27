@@ -247,10 +247,17 @@ func packArgs(paras []string) [][]byte {
 	return args
 }
 
-// func genPolicy(p string) (*common.SignaturePolicyEnvelope, error) {
-// 	// TODO bug, this any leads to endorser invalid
-// 	// if p == "ANY" {
-// 	// 	return cauthdsl.SignedByAnyMember([]string{OrgName}), nil
-// 	// }
-// 	return cauthdsl.FromString(p),nil
-// }
+
+func GetClient(sdk *fabsdk.FabricSDK, info *InitInfo) (*channel.Client, error) {
+	
+	clientChannelContext := sdk.ChannelContext(info.ChannelID, fabsdk.WithUser(info.UserName), fabsdk.WithOrg(info.OrgName))
+	// returns a Client instance. Channel client can query chaincode, execute chaincode and register/unregister for chaincode events on specific channel.
+	channelClient, err := channel.New(clientChannelContext)
+	if err != nil {
+		return nil, fmt.Errorf("创建应用通道客户端失败: %v", err)
+	}
+
+	fmt.Println("另一个通道客户端创建成功，可以利用此客户端调用链码进行查询或执行事务.")
+
+	return channelClient, nil
+}

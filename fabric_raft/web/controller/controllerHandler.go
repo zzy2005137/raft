@@ -42,7 +42,7 @@ func (app *Application) GetData(c *gin.Context) {
 		json.Unmarshal(result, &m)
 		fmt.Println("根据Key查询信息成功：")
 		fmt.Println(m)
-		c.JSON(http.StatusOK, m)
+		c.JSON(http.StatusOK, m) 
 	}
 
 }
