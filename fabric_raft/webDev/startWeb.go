@@ -65,13 +65,13 @@
 		 Client:      channelClient,
 	 }
  
-	 m := service.Mechanic{
-		 Key:   "zs",
-		 Value: "101",
-		 Test:  "test",
-	 }
+	//  m := service.Mechanic{
+	// 	 Key:   "zs",
+	// 	 Value: "101",
+	// 	 Test:  "test",
+	//  }
  
-	 fmt.Println(m)
+	//  fmt.Println(m)
 
  
 	 fmt.Println("===========服务层功能测试完成================")

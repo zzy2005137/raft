@@ -3,6 +3,7 @@ package service
 import (
 	"encoding/json"
 	"fmt"
+
 	"github.com/hyperledger/fabric-sdk-go/pkg/client/channel"
 )
 
@@ -60,7 +61,7 @@ func (t *ServiceSetup) Save(m Mechanic) (string, error) {
 	}
 
 	//执行请求
-	respone, err := t.Client.Execute(req)
+	response, err := t.Client.Execute(req)
 	if err != nil {
 		return "", err
 	}
@@ -69,23 +70,45 @@ func (t *ServiceSetup) Save(m Mechanic) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	return string(respone.TransactionID), nil
+
+	return string(response.TransactionID), nil
 }
 
 func (t *ServiceSetup) FindInfo(Key string) ([]byte, error) {
 
 	//生成请求
+
 	req := channel.Request{
 		ChaincodeID: t.ChaincodeID,
 		Fcn:         "queryInfo",
 		Args:        [][]byte{[]byte(Key)},
 	}
 	//执行请求
-	respone, err := t.Client.Query(req)
+	response, err := t.Client.Query(req)
 	if err != nil {
 		return []byte{0x00}, err
 	}
-	return respone.Payload, nil
+
+	return response.Payload, nil
+}
+func (t *ServiceSetup) FindInfoDetails(Key string) ([]byte, error) {
+
+	//生成请求
+
+	req := channel.Request{
+		ChaincodeID: t.ChaincodeID,
+		Fcn:         "queryInfo",
+		Args:        [][]byte{[]byte(Key)},
+	}
+	//执行请求
+	response, err := t.Client.Query(req)
+	if err != nil {
+		return []byte{0x00}, err
+	}
+
+	fmt.Println("Proposal.TxnID ======   ", response.Proposal.TxnID)
+
+	return response.Payload, nil
 }
 
 func (t *ServiceSetup) FindInfoBy(Value, Test string) ([]byte, error) {

@@ -21,7 +21,7 @@ type Application struct {
 	Fabric *service.ServiceSetup
 }
 
-func Test(c *gin.Context) {
+func (app *Application) Test(c *gin.Context) {
 
 	c.JSON(200, gin.H{
 		"message": "SUCCESS",
@@ -42,7 +42,7 @@ func (app *Application) GetData(c *gin.Context) {
 		json.Unmarshal(result, &m)
 		fmt.Println("根据Key查询信息成功：")
 		fmt.Println(m)
-		c.JSON(http.StatusOK, m) 
+		c.JSON(http.StatusOK, m)
 	}
 
 }
@@ -67,6 +67,21 @@ func (app *Application) CreateData(c *gin.Context) {
 				"new key":         m.Key,
 			})
 		}
+
+	}
+
+}
+
+func (app *Application) GetDetails(c *gin.Context) {
+
+	key := c.DefaultQuery("key", "zs")
+	fmt.Println("查询..." + key)
+
+	_, err := app.Fabric.FindInfoDetails(key)
+	if err != nil {
+		fmt.Println(err.Error())
+	} else {
+		fmt.Println("查询交易细节")
 
 	}
 

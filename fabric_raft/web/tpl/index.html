@@ -1,37 +1,62 @@
-{{/*
-    author: hanxiaodong
-*/}}
 <html>
+
 <head>
     <title></title>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
+
 <body>
+    <h2>基于 Hyperledger Fabric-SDK-GO 的Web应用示例.</h2>
 
+    <button id="btnGet">获取json数据</button>
+    <button id="btnSave">上链测试</button>
+    <div class="show">
 
-<div class="common menu">
-    <ul>
-	<li><a href="/index.html"><img src="/static/img/chaindesk.png" width="120px" height="50px"/></a></li>
-        <li><a href="/queryReq?name=Hanxiaodong">查询信息</a></li>
-        <li><a href="/setInfo.html">设置/修改</a></li>
-    </ul>
-</div>
-
-<div class="common main">
-    <div class="content">
-        <div class="msg" style="margin-top: 30px; font-size: 20px;">
-            孔壹学院：欢迎您来到 Hyperledger Fabric 的世界
-        </div>
-        <div class="calink">
-            <a href="/setInfo.html">设置/修改</a><br/>
-            <a href="/queryReq?name=Hanxiaodong">查询信息</a>
-        </div>
     </div>
-</div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-<div class="common footer">
-   孔壹学院出品：一个基于 Hyperledger Fabric-SDK-GO 的Web应用示例.
-</div>
+    <script>
+        const btnGet = document.getElementById("btnGet")
+        const btnSave = document.getElementById("btnSave")
+        const showDiv = document.querySelector("show")
+        var jsonData
 
+        btnGet.addEventListener("click", () => {
+            console.log("btnGet clicked")
+            fetch("https://my-json-server.typicode.com/zzy2005137/easy-json-server/data")
+                .then(res => res.json())
+                .then(
+                    data => {
+                        jsonData = data
+                        var p = document.createElement("p");
+                        p.innerHTML = JSON.stringify(data)
+                        document.body.appendChild(p);
+                    }
+                )
+        })
+
+        btnSave.addEventListener("click", () => {
+            // console.log(jsonData)
+            // fetch("https://localhost:8080/test",{
+            //     method:"POST",
+            //     // body:JSON.stringify(jsonData)
+            // }).then(res =>{
+            //     res.json()
+            // }).then(res=>{
+            //     console.log(res)
+            // })
+            axios.post("/fab", jsonData)
+                .then(function (response) {
+                    console.log(response.data);
+                    var p = document.createElement("p");
+                    p.innerHTML = JSON.stringify(response.data)
+                    document.body.appendChild(p);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        })
+    </script>
 </body>
+
 </html>

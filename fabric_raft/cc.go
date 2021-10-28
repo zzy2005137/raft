@@ -175,43 +175,7 @@ func main() {
 
 	fmt.Println("===========服务层功能测试完成================")
 
-	// fmt.Println("===========web 服务启动===================")
 
-	// app := controller.Application{
-	// 	Fabric: &serviceSetup,
-	// }
-	// web.WebStart(&app)
-
-	//===========================================//
-
-	//===========================================//
-
-	// serviceSetup := service.ServiceSetup{
-	// 	ChaincodeID:org1Client.CCID,
-	// 	Client:org1Client.CC(),
-	// }
-
-	// msg, err := serviceSetup.SetInfo("Hanxiaodong", "Kongyixueyuan")
-	// if err != nil {
-	// 	fmt.Println(err)
-	// } else {
-	// 	fmt.Println(msg)
-	// }
-
-	// msg, err = serviceSetup.GetInfo("Hanxiaodong")
-	// if err != nil {
-	// 	fmt.Println(err)
-	// } else {
-	// 	fmt.Println(msg)
-	// }
-
-	// //===========================================//
-
-	// app := controller.Application{
-	// 	Fabric: &serviceSetup,
-	// }
-
-	// web.WebStart(&app)
 
 }
 
